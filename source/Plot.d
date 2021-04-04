@@ -34,12 +34,15 @@ class Plot : Overlay {
 
         // Set plot name
         plot_name_msg.setUseMarkup(true);
-        plot_name_msg.setMarkup("<span size='small'>" ~ plot_name ~ "</span>");
+        plot_name_msg.setMarkup("<span size='small' foreground='#000000'>" ~ plot_name ~ "</span>");
     
         // Set plot name position
         plot_name_msg.setProperty("margin", 5);
         plot_name_msg.setProperty("halign", GtkAlign.END);
         plot_name_msg.setProperty("valign", GtkAlign.START);
+
+        // Connect drawing slot
+        plot_draw.addOnDraw(&this.onPlotAreaDraw);
     }
 
     // @brief Create an points array to display
@@ -72,6 +75,17 @@ class Plot : Overlay {
 
         // Draw request
         plot_draw.queueDraw();
+    }
+
+    private final bool onPlotAreaDraw (Scoped!Context cairo_context, Widget draw_area) {
+        // Draw background (White)
+        cairo_context.setSourceRgba(1.0, 1.0, 1.0, 1.0);
+        cairo_context.paint();
+
+        // Get drawing area size
+        GtkAllocation w_alloc; draw_area.getAllocation(w_alloc);
+
+        return true;
     }
 
     private Label plot_name_msg;

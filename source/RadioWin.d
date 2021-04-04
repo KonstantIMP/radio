@@ -18,7 +18,7 @@ class RadioWin : Window {
 
         test_plot = new Plot("Hello");
     
-        (cast(Box)ui_builder.getObject("plot_box")).packStart(test_plot, false, true, 0);
+        (cast(Box)ui_builder.getObject("plot_box")).packStart(test_plot, true, true, 0);
         test_plot.drawRequest();
     }
 
