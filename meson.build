@@ -11,7 +11,8 @@ sources_dir = include_directories('source/')
 resources_dir = 'resource/'
 
 radio_sources = [
-    'source/app.d'
+    'source/app.d',
+    'source/RadioWin.d'
 ]
 
 radio_resources = [
