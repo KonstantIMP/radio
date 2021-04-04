@@ -11,7 +11,7 @@ import RadioWin;
 int main(string [] args) {
     // GTKd init
     Main.init(args);
-
+    
     // Create and register the app
     Application radio_app = new Application("org.radio.kimp", GApplicationFlags.FLAGS_NONE);
 
