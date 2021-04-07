@@ -13,6 +13,13 @@
             "file"   : "source/VideoPulsePlot.d",
             "desc"   : "Create informativeness and bits setter (and maybe getters too)",
             "status" : "Do it"
+        },
+        {
+            "id"     : "0x00000003",
+            "label"  : "Actions connect",
+            "file"   : "source/RadioWin.d",
+            "desc"   : "Connect signals for data changing",
+            "status" : "Do it"
         }
     ]
 }

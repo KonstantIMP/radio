@@ -22,7 +22,7 @@ class RadioPulsePlot : Plot {
     // Also init values like informativeness, freq, modulation and bits
     public this () { super("График радиосигнала");
         informativeness = 50.0; freq = 100.0;
-        bits = "010011"; modulation = ModulationType.ModulationType.FREQUENCY;
+        bits = ""; modulation = ModulationType.ModulationType.FREQUENCY;
     }
 
     // @brief Calculate plot area size
