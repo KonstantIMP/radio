@@ -13,7 +13,7 @@ class VideoPulsePlot : Plot {
     // Init parent class abd set plot's name
     // Also init values like informativeness and bits
     public this () { super("График видеоимпульса");
-        informativeness = 50.0; bits = "00101010101010101010";
+        informativeness = 50.0; bits = "";
     }
 
     // @brief Calculate plot area size
@@ -45,6 +45,10 @@ class VideoPulsePlot : Plot {
         return ys;
     }
 
+    // TODO. Create setters and getters (id : 0x00000002)
+
+    // Informativeness for size calculating
     private float informativeness;
+    // Bit sequence for displaing
     private string bits;
 }

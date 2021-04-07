@@ -24,7 +24,7 @@ int main(string [] args) {
             bc.addFromResource("/kimp/ui/radio.glade");
         }
         catch (Exception) {
-            // TODO : make error message
+            // TODO : make error message (id : 0x00000001)
         }
 
         // Create and show main window
