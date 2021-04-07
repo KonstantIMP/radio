@@ -70,6 +70,26 @@ class RadioPulsePlot : Plot {
         return ys;
     }
 
+    // @brief setInformativeness Setter for informativeness
+    public void setInformativeness (float informativeness_value) {
+        informativeness = informativeness_value;
+    }
+
+    // @brief setBitSequence Setter for bits
+    public void setBitSequence (string bit_sequence) {
+        bits = bit_sequence;
+    }
+
+    // @brief setFrequency Setter for freq
+    public void setFrequency (float frequency_value) {
+        freq = frequency_value;
+    }
+
+    // @brief setModulationType Setter for modulation
+    public void setModulationType (ModulationType modulation_type_value) {
+        modulation = modulation_type_value;
+    }
+
     // Informativeness for size calculating
     private float informativeness;
     // Bit sequence for displaing

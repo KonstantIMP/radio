@@ -45,7 +45,15 @@ class VideoPulsePlot : Plot {
         return ys;
     }
 
-    // TODO. Create setters and getters (id : 0x00000002)
+    // @brief setInformativeness Setter for informativeness
+    public void setInformativeness (float informativeness_value) {
+        informativeness = informativeness_value;
+    }
+
+    // @brief setBitSequence Setter for bits
+    public void setBitSequence (string bit_sequence) {
+        bits = bit_sequence;
+    }
 
     // Informativeness for size calculating
     private float informativeness;

@@ -12,7 +12,7 @@
             "label"  : "VideoPulsePlot props",
             "file"   : "source/VideoPulsePlot.d",
             "desc"   : "Create informativeness and bits setter (and maybe getters too)",
-            "status" : "Do it"
+            "status" : "Done"
         },
         {
             "id"     : "0x00000003",
