@@ -4,7 +4,7 @@ module RadioWin;
 // Import GTKd libaries
 import gtk.Window, gtk.Builder, gtk.Box; 
 
-import Plot;
+import VideoPulsePlot;
 
 //
 class RadioWin : Window {
@@ -16,11 +16,11 @@ class RadioWin : Window {
         // Set window margins
         this.setBorderWidth(10);
 
-        test_plot = new Plot("Hello");
+        test_plot = new VideoPulsePlot();
     
         (cast(Box)ui_builder.getObject("plot_box")).packStart(test_plot, true, true, 0);
         test_plot.drawRequest();
     }
 
-    private Plot test_plot;
+    private VideoPulsePlot test_plot;
 }

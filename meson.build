@@ -13,7 +13,8 @@ resources_dir = 'resource/'
 radio_sources = [
     'source/app.d',
     'source/RadioWin.d',
-    'source/Plot.d'
+    'source/Plot.d',
+    'source/VideoPulsePlot.d'
 ]
 
 radio_resources = [

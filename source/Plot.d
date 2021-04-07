@@ -50,23 +50,18 @@ class Plot : Overlay {
 
     // @brief Create an points array to display
     // @return byte [] Points array to display
-    private float [] createYS () {
+    protected float [] createYS () {
         // Empty for basic (parent) class
-        float [] ys = new float[FRAMERATE * 2];
-
-        // Zero ys
-        for (int i = 0; i < ys.length; i++) ys[i] = 1;
-
+        float [] ys = new float[0];
         return ys;
     }
 
     // @brief Calculate plot area size
     // For custom plots must be override
     // @return GtkAllocation with new widget size
-    private GtkAllocation allocateSize () {
+    protected GtkAllocation allocateSize () {
         GtkAllocation allocated_size;
-        allocated_size.height = allocated_size.width = 30;
-        allocated_size.x = allocated_size.y = 30;
+        allocated_size.height = allocated_size.width = -1;
         return allocated_size;
     }
 
@@ -78,7 +73,7 @@ class Plot : Overlay {
 
         // Size reallocate
         GtkAllocation new_alloc = this.allocateSize();
-        plot_draw.sizeAllocate(&new_alloc);
+        plot_draw.setSizeRequest(new_alloc.width, new_alloc.height);
 
         // Draw request
         plot_draw.queueDraw();
@@ -107,7 +102,7 @@ class Plot : Overlay {
         // Calculate zero Y point and amplitude (because ys must contain values from -1 to 1)
         float y_zero = w_alloc.height - 20; // Default value (for ys without < 0 values)
         float ampl = w_alloc.height / 6 * 4; // Default value
-        for (int i = 0; i < ys.length; i = i + (FRAMERATE / 2)) {
+        for (ulong i = 0; i < ys.length; i = i + (FRAMERATE / 2)) {
             if (ys[i] < 0) {
                 // The Y-center of plot
                 y_zero = w_alloc.height / 2;
@@ -116,7 +111,6 @@ class Plot : Overlay {
                 break;
             }
         }
-
 
         // Draw Y axix
         cairo_context.moveTo(20, w_alloc.height - 10);
@@ -147,15 +141,21 @@ class Plot : Overlay {
         cairo_context.moveTo(20, y_zero);
 
         // Draw it
-        for (int i = 0; i < ys.length; i++) {
+        for (ulong i = 0; i < ys.length; i++) {
             cairo_context.lineTo(current_point, y_zero - (ys[i] * ampl));
             current_point = current_point + step;
         } cairo_context.stroke();
 
+        // Clear the memory
+        ys.destroy();
+
         return true;
     }
 
+    // Lable with plot name
     private Label plot_name_msg;
+    // Area with plot (cairo_surface)
     private DrawingArea plot_draw;
+    // Scrollers for plot scaling
     private ScrolledWindow plot_sw;
 }
