@@ -2,6 +2,27 @@
 <!-- Generated with glade 3.38.2 -->
 <interface>
   <requires lib="gtk+" version="3.24"/>
+  <object class="GtkAdjustment" id="freq_adj">
+    <property name="lower">1</property>
+    <property name="upper">1000000000000000</property>
+    <property name="value">100</property>
+    <property name="step-increment">1</property>
+    <property name="page-increment">10</property>
+  </object>
+  <object class="GtkAdjustment" id="informativeness_adj">
+    <property name="lower">1</property>
+    <property name="upper">10000000000</property>
+    <property name="value">50</property>
+    <property name="step-increment">1</property>
+    <property name="page-increment">10</property>
+  </object>
+  <object class="GtkAdjustment" id="noise_adj">
+    <property name="lower">-100</property>
+    <property name="upper">100</property>
+    <property name="value">1</property>
+    <property name="step-increment">1</property>
+    <property name="page-increment">10</property>
+  </object>
   <object class="GtkWindow" id="radio_win">
     <property name="can-focus">False</property>
     <property name="title" translatable="yes">Radio</property>
@@ -57,13 +78,12 @@
               </packing>
             </child>
             <child>
-              <object class="GtkEntry" id="freq_en">
+              <object class="GtkSpinButton" id="freq_sb">
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
-                <property name="text" translatable="yes">100</property>
-                <property name="xalign">1</property>
                 <property name="input-purpose">number</property>
                 <property name="input-hints">GTK_INPUT_HINT_NO_SPELLCHECK | GTK_INPUT_HINT_NO_EMOJI | GTK_INPUT_HINT_NONE</property>
+                <property name="adjustment">freq_adj</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -85,13 +105,12 @@
               </packing>
             </child>
             <child>
-              <object class="GtkEntry" id="informativeness_ут">
+              <object class="GtkSpinButton" id="informativeness_sb">
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
-                <property name="text" translatable="yes">50</property>
-                <property name="xalign">1</property>
                 <property name="input-purpose">number</property>
                 <property name="input-hints">GTK_INPUT_HINT_NO_SPELLCHECK | GTK_INPUT_HINT_NO_EMOJI | GTK_INPUT_HINT_NONE</property>
+                <property name="adjustment">informativeness_adj</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -148,10 +167,12 @@
                 <property name="can-focus">False</property>
                 <property name="spacing">5</property>
                 <child>
-                  <object class="GtkEntry" id="noise_en">
+                  <object class="GtkSpinButton" id="noise_sb">
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
-                    <property name="xalign">1</property>
+                    <property name="input-purpose">number</property>
+                    <property name="input-hints">GTK_INPUT_HINT_NO_SPELLCHECK | GTK_INPUT_HINT_NO_EMOJI | GTK_INPUT_HINT_NONE</property>
+                    <property name="adjustment">noise_adj</property>
                   </object>
                   <packing>
                     <property name="expand">True</property>

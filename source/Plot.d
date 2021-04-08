@@ -102,7 +102,7 @@ class Plot : Overlay {
         // Calculate zero Y point and amplitude (because ys must contain values from -1 to 1)
         float y_zero = w_alloc.height - 20; // Default value (for ys without < 0 values)
         float ampl = w_alloc.height / 6 * 4; // Default value
-        for (ulong i = 0; i < ys.length; i = i + (FRAMERATE / 10)) {
+        for (ulong i = 0; i < ys.length; i = i + (FRAMERATE / 100)) {
             if (ys[i] < 0) {
                 // The Y-center of plot
                 y_zero = w_alloc.height / 2;

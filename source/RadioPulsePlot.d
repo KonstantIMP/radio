@@ -29,7 +29,7 @@ class RadioPulsePlot : Plot {
     // Set height as parent's and width as bits.length
     override protected GtkAllocation allocateSize () {
         GtkAllocation allocated_size;
-        allocated_size.width = cast(int)(60 + (bits.length * 15));
+        allocated_size.width = cast(int)(60 + (bits.length * 30));
         allocated_size.height = -1;
         return allocated_size;
     }
