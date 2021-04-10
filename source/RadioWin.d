@@ -7,6 +7,8 @@ import gtk.Window, gtk.Builder, gtk.Box, gtk.EditableIF, gtk.SpinButton, gtk.Com
 import VideoPulsePlot;
 import RadioPulsePlot;
 
+import NoiseRadioPulsePlot;
+
 import ModulationType;
 
 //
@@ -23,10 +25,12 @@ class RadioWin : Window {
         // Create plots instances
         video_plot = new VideoPulsePlot();
         radio_plot = new RadioPulsePlot();
+        noise_plot = new NoiseRadioPulsePlot();
     
         // Add plots to UI form
         (cast(Box)ui_builder.getObject("plot_box")).packStart(video_plot, true, true, 0);
         (cast(Box)ui_builder.getObject("plot_box")).packStart(radio_plot, true, true, 0);
+        (cast(Box)ui_builder.getObject("plot_box")).packStart(noise_plot, true, true, 0);
 
         // Connect signals
         (cast(EditableIF)ui_builder.getObject("bits_en")).addOnChanged(&onBitsChanged);
@@ -35,6 +39,8 @@ class RadioWin : Window {
         (cast(SpinButton)ui_builder.getObject("informativeness_sb")).addOnValueChanged(&onInformativenessChanges);
     
         (cast(ComboBoxText)ui_builder.getObject("modulation_cb")).addOnChanged(&onModulationTypeChanged);
+    
+        (cast(SpinButton)ui_builder.getObject("noise_sb")).addOnValueChanged(&onNoiseChanged);
     }
 
     // @brief onBitsChanged Don't allow input non-1 and non-0 to bit sequence entry
@@ -56,6 +62,7 @@ class RadioWin : Window {
         // Set new bits
         video_plot.setBitSequence(en.getChars(0, -1));
         radio_plot.setBitSequence(en.getChars(0, -1));
+        noise_plot.setBitSequence(en.getChars(0, -1));
 
         // Sent draw request
         plotsUpdate();
@@ -65,6 +72,7 @@ class RadioWin : Window {
     private void onFreqChanged (SpinButton freq_sb) {
         // Set new freq
         radio_plot.setFrequency(freq_sb.getValue());
+        noise_plot.setFrequency(freq_sb.getValue());
 
         // Sent draw request
         plotsUpdate();
@@ -75,6 +83,7 @@ class RadioWin : Window {
         // Set new informativeness
         video_plot.setInformativeness(informativeness_sb.getValue());
         radio_plot.setInformativeness(informativeness_sb.getValue());
+        noise_plot.setInformativeness(informativeness_sb.getValue());
 
         // Sent draw request
         plotsUpdate();
@@ -84,6 +93,16 @@ class RadioWin : Window {
     private void onModulationTypeChanged (ComboBoxText modulation_cb) {
         // Set new modulation type
         radio_plot.setModulationType(cast(ModulationType)(modulation_cb.getActive()));
+        noise_plot.setModulationType(cast(ModulationType)(modulation_cb.getActive()));
+
+        // Sent draw request
+        plotsUpdate();
+    }
+
+    // @brief onNoiseChanged Change noise power
+    private void onNoiseChanged (SpinButton noise_sb) {
+        // Set new noise power
+        noise_plot.setNoise(noise_sb.getValue());
 
         // Sent draw request
         plotsUpdate();
@@ -93,10 +112,13 @@ class RadioWin : Window {
     private void plotsUpdate() {
         video_plot.drawRequest();
         radio_plot.drawRequest();
+        noise_plot.drawRequest();
     }
 
     // VideoPulsePlot object
     private VideoPulsePlot video_plot;
     // RadioPulsePlot object
     private RadioPulsePlot radio_plot;
+    // NoiseRadioPulsePlot object
+    private NoiseRadioPulsePlot noise_plot;
 }

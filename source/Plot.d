@@ -48,6 +48,12 @@ class Plot : Overlay {
         plot_draw.addOnDraw(&this.onPlotAreaDraw);
     }
 
+    // @brief Change plot's name
+    public void setPlotName (immutable string plot_name) {
+        // Set plot name
+        plot_name_msg.setMarkup("<span size='small' foreground='#000000'>" ~ plot_name ~ "</span>");
+    }
+
     // @brief Create an points array to display
     // @return byte [] Points array to display
     protected float [] createYS () {
