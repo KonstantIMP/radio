@@ -2,7 +2,7 @@
 module RadioWin;
 
 // Import GTKd libaries
-import gtk.Window, gtk.Builder, gtk.Box, gtk.EditableIF, gtk.SpinButton, gtk.ComboBoxText; 
+import gtk.Window, gtk.Builder, gtk.Box, gtk.EditableIF, gtk.SpinButton, gtk.ComboBoxText, gtk.Button; 
 
 import VideoPulsePlot;
 import RadioPulsePlot;
@@ -41,6 +41,8 @@ class RadioWin : Window {
         (cast(ComboBoxText)ui_builder.getObject("modulation_cb")).addOnChanged(&onModulationTypeChanged);
     
         (cast(SpinButton)ui_builder.getObject("noise_sb")).addOnValueChanged(&onNoiseChanged);
+
+        (cast(Button)ui_builder.getObject("regen_btn")).addOnClicked(delegate void(_) {noise_plot.drawRequest();});
     }
 
     // @brief onBitsChanged Don't allow input non-1 and non-0 to bit sequence entry

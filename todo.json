@@ -19,7 +19,7 @@
             "label"  : "Actions connect",
             "file"   : "source/RadioWin.d",
             "desc"   : "Connect signals for data changing",
-            "status" : "Do it"
+            "status" : "Done"
         }
     ]
 }
