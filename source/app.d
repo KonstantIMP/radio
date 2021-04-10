@@ -21,7 +21,8 @@ int main(string [] args) {
         Builder bc = new Builder();
 
         try {
-            bc.addFromResource("/kimp/ui/radio.glade");
+            version(linux) bc.addFromResource("/kimp/ui/radio.glade");
+            else bc.addFromFile("..\\res\\radio.glade");
         }
         catch (Exception) {
             MessageDialog err = new MessageDialog(null, GtkDialogFlags.MODAL | GtkDialogFlags.USE_HEADER_BAR,
