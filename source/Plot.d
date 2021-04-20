@@ -33,6 +33,7 @@ class Plot : Overlay {
         // Create widget's struct
         this.add(cast(Widget)(plot_sw));
         plot_sw.add(cast(Widget)plot_draw);
+        plot_sw.setSizeRequest(400, 100);
         this.addOverlay(cast(Widget)(plot_name_msg));
 
         // Set plot name
