@@ -31,6 +31,12 @@ class VideoPulsePlot : Plot {
         // Create ys array with needed length
         float [] ys = new float[bits.length * cast(ulong)(FRAMERATE / informativeness)];
 
+        // Zero check
+        if (ys.length < bits.length * 30) {
+            informativeness = informativeness / 2;
+            drawRequest(); return ys;
+        }
+
         // Setting values
         for (ulong i = 0; i < bits.length; i++) {
             for(ulong j = 0; j < cast(ulong)(FRAMERATE / informativeness); j++) {
