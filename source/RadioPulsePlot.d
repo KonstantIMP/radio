@@ -49,10 +49,6 @@ class RadioPulsePlot : Plot {
             if(i) if (bits[i] != bits[i - 1]) cur_phase = -cur_phase;
             for(ulong j = 0; j < cast(ulong)(FRAMERATE / informativeness); j++) {
                 switch (modulation) {
-                    case ModulationType.ModulationType.AMPLITUDE :
-                        if (bits[i] == '1') ys[i * cast(ulong)(FRAMERATE / informativeness) + j] = sin(PI2 * freq * (i * cast(ulong)(FRAMERATE / informativeness) + j) / FRAMERATE);
-                        else ys[i * cast(ulong)(FRAMERATE / informativeness) + j] = sin(PI2 * freq * (i * cast(ulong)(FRAMERATE / informativeness) + j) / FRAMERATE) * 0.5;
-                        break;
                     case ModulationType.ModulationType.PHASE :
                         ys[i * cast(ulong)(FRAMERATE / informativeness) + j] = sin(PI2 * freq * (i * cast(ulong)(FRAMERATE / informativeness) + j) / FRAMERATE) * cur_phase;
                         break;

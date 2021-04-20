@@ -138,8 +138,7 @@
                 <property name="active-id">0</property>
                 <items>
                   <item id="0" translatable="yes">КИМ-ЧМ</item>
-                  <item id="1" translatable="yes">КИМ-АМ</item>
-                  <item id="2" translatable="yes">КИМ-ФМ</item>
+                  <item id="1" translatable="yes">КИМ-ФМ</item>
                 </items>
               </object>
               <packing>
