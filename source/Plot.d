@@ -107,7 +107,7 @@ class Plot : Overlay {
 
         // Calculate zero Y point and amplitude (because ys must contain values from -1 to 1)
         float y_zero = w_alloc.height - 20; // Default value (for ys without < 0 values)
-        float ampl = w_alloc.height / 6 * 4; // Default value
+        float ampl = w_alloc.height / 6 * 3.75; // Default value
         for (ulong i = 0; i < ys.length; i = i + (FRAMERATE / 100)) {
             if (ys[i] < 0) {
                 // The Y-center of plot
@@ -132,6 +132,18 @@ class Plot : Overlay {
         cairo_context.relLineTo(-5, +2);
         cairo_context.relLineTo(0, -4);
         cairo_context.relLineTo(+5, +2);
+        cairo_context.stroke();
+
+        // Draw axes names
+        cairo_context.setFontSize(10);
+        cairo_context.moveTo(6, 15); cairo_context.showText("А");
+        cairo_context.moveTo(w_alloc.width - 30, w_alloc.height - 5); cairo_context.showText("t(сек.)");
+
+        // Draw Y axis markup
+        cairo_context.moveTo(5, y_zero - ampl + 3); cairo_context.showText("1");
+        cairo_context.moveTo(5, y_zero + ampl + 3); cairo_context.showText("-1");
+        cairo_context.moveTo(16, y_zero + ampl); cairo_context.relLineTo(8, 0);
+        cairo_context.moveTo(16, y_zero - ampl); cairo_context.relLineTo(8, 0);
         cairo_context.stroke();
 
         // Set plot line params
