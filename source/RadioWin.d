@@ -21,6 +21,8 @@ class RadioWin : Window {
 
         // Set window margins
         this.setBorderWidth(10);
+        // Set usefull window size
+        this.setDefaultSize(600, 300);
 
         // Create plots instances
         video_plot = new VideoPulsePlot();
