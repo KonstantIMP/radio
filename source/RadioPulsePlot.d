@@ -40,6 +40,13 @@ class RadioPulsePlot : Plot {
         // Create ys array with needed length
         float [] ys = new float[bits.length * cast(ulong)(FRAMERATE / informativeness)];
 
+        // Zero check
+        if (ys.length < bits.length * 60) {
+            informativeness = informativeness / 2;
+            freq = freq / 2;
+            drawRequest(); return ys;
+        }
+
         // Addititon variables for PHASE modulation
         int cur_phase = 1;
         if (bits.length) if (bits[0] == '0') cur_phase = -1;
