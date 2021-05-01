@@ -17,7 +17,8 @@ radio_sources = [
     'source/VideoPulsePlot.d',
     'source/ModulationType.d',
     'source/RadioPulsePlot.d',
-    'source/NoiseRadioPulsePlot.d'
+    'source/NoiseRadioPulsePlot.d',
+    'source/OutputDataPlot.d'
 ]
 
 radio_resources = [
