@@ -13,8 +13,6 @@ import gtk.Widget;
 // Import math module
 import std.math;
 
-immutable float PI2 = PI * 2;
-
 // RadioPulsePlot class define
 class RadioPulsePlot : Plot {
     // @brief RadioPulsePlot constructor
@@ -94,13 +92,13 @@ class RadioPulsePlot : Plot {
     }
 
     // Informativeness for size calculating
-    private float informativeness;
+    protected float informativeness;
     // Bit sequence for displaing
-    private string bits;
+    protected string bits;
     // Radio signal main frequency
-    private float freq;
+    protected float freq;
 
     // Signal and radio frequency sum type
-    private ModulationType modulation;
+    protected ModulationType modulation;
 }
 

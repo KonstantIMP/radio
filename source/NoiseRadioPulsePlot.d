@@ -7,6 +7,9 @@ import RadioPulsePlot;
 // Import libraries for noise calculating
 import std.math, std.random;
 
+// Import basic plot class
+import Plot;
+
 // NoiseRadioPulsePlot class
 class NoiseRadioPulsePlot : RadioPulsePlot {
     // @brief NoiseRadioPlot constructor
@@ -46,5 +49,5 @@ class NoiseRadioPulsePlot : RadioPulsePlot {
     }
 
     // Signal's noise power
-    private float noise;
+    protected float noise;
 }

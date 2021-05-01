@@ -1,6 +1,9 @@
 // Plot module define
 module Plot;
 
+// Import math module
+import std.math;
+
 // Import GRKd libraries
 import gtk.ScrolledWindow, gtk.DrawingArea, gtk.Label, gtk.Overlay, gtk.Widget;
 
@@ -9,6 +12,9 @@ import cairo.Context;
 
 // Framerate const
 immutable uint FRAMERATE = 11025;
+
+// PI * 2 const
+immutable float PI2 = PI * 2;
 
 // @brief Widget for plot drawing
 // It is a composite widget with the struct :
