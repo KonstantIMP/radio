@@ -1,17 +1,14 @@
 //RadioWin moduel define
-module RadioWin;
+module radio.win;
 
 // Import GTKd libaries
 import gtk.Window, gtk.Builder, gtk.Box, gtk.EditableIF, gtk.SpinButton, gtk.ComboBoxText, gtk.Button; 
 
 // Import plot widgets
-import VideoPulsePlot;
-import RadioPulsePlot;
-import NoiseRadioPulsePlot;
-import OutputDataPlot;
+import radio.plot;
 
 // Modulation types
-import ModulationType;
+import radio.modulation;
 
 // Main window class
 class RadioWin : Window {

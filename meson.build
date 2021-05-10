@@ -2,7 +2,7 @@ project('radio', ['c', 'd'])
 
 gnome = import('gnome')
 
-gtkd_dep = dependency('gtk-d:gtkd', method : 'dub')
+gtkd_dep = dependency('gtkd-3')
 gtk_dep = dependency('gtk+-3.0')
 
 source_root = meson.source_root()
@@ -12,13 +12,9 @@ resources_dir = 'resource/'
 
 radio_sources = [
     'source/app.d',
-    'source/RadioWin.d',
-    'source/Plot.d',
-    'source/VideoPulsePlot.d',
-    'source/ModulationType.d',
-    'source/RadioPulsePlot.d',
-    'source/NoiseRadioPulsePlot.d',
-    'source/OutputDataPlot.d'
+    'source/radio/win.d',
+    'source/radio/plot.d',
+    'source/radio/modulation.d'
 ]
 
 radio_resources = [

@@ -1,5 +1,5 @@
 // ModulationType module define
-module ModulationType;
+module radio.modulation;
 
 // Enumeration of supported modulation types
 enum ModulationType : ubyte {

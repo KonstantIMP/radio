@@ -5,7 +5,7 @@ module Radio;
 import gtk.Application, gtk.Builder, gtk.Main, gtk.MessageDialog;
 
 // Main window class
-import RadioWin;
+import radio.win;
 
 // radio start point
 int main(string [] args) {
