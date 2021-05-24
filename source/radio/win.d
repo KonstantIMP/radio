@@ -2,7 +2,10 @@
 module radio.win;
 
 // Import GTKd libaries
-import gtk.Window, gtk.Builder, gtk.Box, gtk.EditableIF, gtk.SpinButton, gtk.ComboBoxText, gtk.Button; 
+import gtk.Window, gtk.Builder, gtk.Box, gtk.Label, gtk.EditableIF, gtk.SpinButton, gtk.ComboBoxText, gtk.Button; 
+
+// Import GLib and conv
+import glib.Timeout, std.conv;
 
 // Import plot widgets
 import radio.plot;
@@ -27,6 +30,8 @@ class RadioWin : Window {
         noise_plot = new NoiseRadioPulsePlot();
         output_plot = new OutputDataPlot();
     
+        error_percent_msg = (cast(Label)ui_builder.getObject("error_percent_msg"));
+
         // Add plots to UI form
         (cast(Box)ui_builder.getObject("plot_box")).packStart(video_plot, true, true, 0);
         (cast(Box)ui_builder.getObject("plot_box")).packStart(radio_plot, true, true, 0);
@@ -44,6 +49,9 @@ class RadioWin : Window {
         (cast(SpinButton)ui_builder.getObject("noise_sb")).addOnValueChanged(&onNoiseChanged);
 
         (cast(Button)ui_builder.getObject("regen_btn")).addOnClicked(delegate void(_) {noise_plot.drawRequest();});
+
+        // Connect timers
+        ui_updater = new Timeout(500, &updateUI);
     }
 
     // @brief onBitsChanged Don't allow input non-1 and non-0 to bit sequence entry
@@ -124,6 +132,23 @@ class RadioWin : Window {
         output_plot.drawRequest();
     }
 
+    // @brief Function for ui updating
+    protected bool updateUI() {
+        string output = output_plot.getOutputBits();
+        string input = radio_plot.getBitSequence();
+        float result = 0.0; 
+
+        if (output.length) {
+            for (ulong i = 0; i < output.length; i++) {
+                if (input[i] == output[i]) result += 1.0;
+            }
+
+            error_percent_msg.setText(to!string((1 - result / output.length) * 100.0) ~ " %");
+        }
+
+        return true;
+    }
+
     // VideoPulsePlot object
     private VideoPulsePlot video_plot;
     // RadioPulsePlot object
@@ -132,4 +157,8 @@ class RadioWin : Window {
     private NoiseRadioPulsePlot noise_plot;
     // OutputDataPlot object
     private OutputDataPlot output_plot;
+    // Label with errors percent
+    private Label error_percent_msg;
+    // UI updating timeout
+    private Timeout ui_updater;
 }

@@ -319,6 +319,11 @@ class RadioPulsePlot : Plot {
         bits = bit_sequence;
     }
 
+    // @brief getBitSequence Getter for bits
+    public string getBitSequence () {
+        return bits;
+    }
+
     // @brief setFrequency Setter for freq
     public void setFrequency (float frequency_value) {
         freq = frequency_value;
