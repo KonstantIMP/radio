@@ -14,6 +14,7 @@ radio_sources = [
     'source/app.d',
     'source/radio/win.d',
     'source/radio/plot.d',
+    'source/radio/array.d',
     'source/radio/modulation.d'
 ]
 

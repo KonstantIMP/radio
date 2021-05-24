@@ -4,8 +4,11 @@ module radio.plot;
 // Import ModulationTypes
 import radio.modulation;
 
+// Import conversation library
+import std.conv;
+
 // Import libraries for noise calculating
-import std.math, std.random;
+import std.math, std.random, radio.array;
 
 // Import GRKd libraries
 import gtk.ScrolledWindow, gtk.DrawingArea, gtk.Label, gtk.Overlay, gtk.Widget;
@@ -398,6 +401,20 @@ class OutputDataPlot : NoiseRadioPulsePlot {
         // Get useless signal
         for (ulong i = 0; i < ys.length; i++) {
             ys[i] = (ys[i] - (sin(PI2 * freq * (i) / FRAMERATE))) * 0.5;
+            if (ys[i] < 0) ys[i] = 0 - ys[i];
+        } output_bits = "";
+
+        float medium_val = (min(ys) + max(ys)) / 2;
+        ulong new_bits_l = ys.length / cast(ulong)(FRAMERATE / informativeness);
+
+        for (ulong i = 0; i < new_bits_l; i++) {
+            if (medium_val < max(ys[i * (ys.length / new_bits_l) .. (i + 1) * (ys.length / new_bits_l)])) output_bits ~= '0';
+            else output_bits ~= '1';
+        }
+
+        debug {
+            import std.stdio;
+            writeln(output_bits);
         }
 
         return ys;
