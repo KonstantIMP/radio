@@ -413,8 +413,17 @@ class OutputDataPlot : NoiseRadioPulsePlot {
         ulong new_bits_l = ys.length / cast(ulong)(FRAMERATE / informativeness);
 
         for (ulong i = 0; i < new_bits_l; i++) {
+            float value = 0.0;
+
             if (medium_val < max(ys[i * (ys.length / new_bits_l) .. (i + 1) * (ys.length / new_bits_l)])) output_bits ~= '0';
-            else output_bits ~= '1';
+            else {
+                output_bits ~= '1'; value = 1.0;
+            }
+
+
+            for (ulong j = 0; j < ys.length / new_bits_l; j++) {
+                ys[i * ys.length / new_bits_l + j] = value;
+            }
         }
 
         debug {
